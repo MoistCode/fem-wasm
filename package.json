@@ -23,6 +23,9 @@
     "@assemblyscript/loader": "^0.18.30"
   },
   "devDependencies": {
-    "assemblyscript": "^0.18.30"
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
+    "assemblyscript": "^0.18.30",
+    "eslint": "^7.25.0"
   }
 }
