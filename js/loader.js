@@ -1,14 +1,22 @@
 class WasmLoader {
-  constructor() { void(0); }
+  constructor() {
+    this._imports = {
+      env: {
+        abort() {
+          throw new Error('Aborting...');
+        }
+      }
+    };
+  }
 
   async wasm(path) {
     console.log(`Fetching WASM from ${path}...`);
 
     if (!WebAssembly.instantiateStreaming) {
-      return this.wasmFallback(path);
+      return this.wasmFallback(path, imports);
     }
 
-    const { instance } = await WebAssembly.instantiateStreaming(fetch(path));
+    const { instance } = await WebAssembly.instantiateStreaming(fetch(path), imports = this._imports);
 
     return instance?.exports || {};
   }

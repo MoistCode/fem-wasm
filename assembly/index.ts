@@ -13,3 +13,8 @@ export function fibAS(num: i32): i32 {
 
   return b;
 }
+
+export function abortPractice(abortMe: boolean): void {
+  if (abortMe) abort();
+  console.log('I ran');
+}

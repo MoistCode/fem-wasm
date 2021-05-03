@@ -13,79 +13,82 @@
     <script>
       const WL = new WasmLoader();
       WL.wasm('/build/optimized.wasm').then((instance) => {
-        const { fibAS } = instance;
+        const {
+          fibAS,
+          abortPractice,
+        } = instance;
 
-        function fibJS(num) {
-          let a = 0;
-          let b = 1;
+        // function fibJS(num) {
+        //   let a = 0;
+        //   let b = 1;
 
-          for (let i = 0; i < num; i++) {
-            b = a + b;
-            a = b;
-          }
+        //   for (let i = 0; i < num; i++) {
+        //     b = a + b;
+        //     a = b;
+        //   }
 
-          return b;
-        }
+        //   return b;
+        // }
 
-        function test(num, type) {
-          let prev = window.performance.now();
-          if (type === 'js') {
-            fibJS(num);
-          } else {
-            fibAS(num);
-          }
-          return window.performance.now() - prev;
-        }
+        // function test(num, type) {
+        //   let prev = window.performance.now();
+        //   if (type === 'js') {
+        //     fibJS(num);
+        //   } else {
+        //     fibAS(num);
+        //   }
+        //   return window.performance.now() - prev;
+        // }
 
-        const jsData = [];
-        const asData = [];
+        // const jsData = [];
+        // const asData = [];
 
-        for (let i = 0; i < 1000000; i += 10) {
-          jsData.push({
-            x: i,
-            y: test(i, 'js'),
-          });
+        // for (let i = 0; i < 1000000; i += 10) {
+        //   jsData.push({
+        //     x: i,
+        //     y: test(i, 'js'),
+        //   });
 
-          asData.push({
-            x: i,
-            y: test(i),
-          });
-        }
+        //   asData.push({
+        //     x: i,
+        //     y: test(i),
+        //   });
+        // }
 
-        const chart = new CanvasJS.Chart('chartContainer', {
-          title: {
-            text: 'AS vs TS Fib Time',
-          },
-          toolTip: {
-            shared: true,
-          },
-          legend: {
-            cursor: 'pointer',
-            verticalAlign: 'top',
-            horizontalAlign: 'center',
-            dockInsidePlotArea: true,
-          },
-          data: [
-            {
-              type: 'line',
-              axisYType: 'secondary',
-              name: 'AssemblyScript',
-              showInLegend: true,
-              markerSize: 0,
-              dataPoints: asData,
-            },
-            {
-              type: 'line',
-              axisYType: 'secondary',
-              name: 'JavaScript',
-              showInLegend: true,
-              markerSize: 0,
-              dataPoints: jsData,
-            },
-          ],
-        });
+        // const chart = new CanvasJS.Chart('chartContainer', {
+        //   title: {
+        //     text: 'AS vs TS Fib Time',
+        //   },
+        //   toolTip: {
+        //     shared: true,
+        //   },
+        //   legend: {
+        //     cursor: 'pointer',
+        //     verticalAlign: 'top',
+        //     horizontalAlign: 'center',
+        //     dockInsidePlotArea: true,
+        //   },
+        //   data: [
+        //     {
+        //       type: 'line',
+        //       axisYType: 'secondary',
+        //       name: 'AssemblyScript',
+        //       showInLegend: true,
+        //       markerSize: 0,
+        //       dataPoints: asData,
+        //     },
+        //     {
+        //       type: 'line',
+        //       axisYType: 'secondary',
+        //       name: 'JavaScript',
+        //       showInLegend: true,
+        //       markerSize: 0,
+        //       dataPoints: jsData,
+        //     },
+        //   ],
+        // });
 
-        chart.render();
+        // chart.render();
       });
     </script>
   </body>
